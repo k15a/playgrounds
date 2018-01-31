@@ -1,0 +1,29 @@
+{
+  "name": "playgrounds",
+  "version": "0.1.0",
+  "license": "MIT",
+  "bin": {
+    "playgrounds": "./bin/playgrounds"
+  },
+  "scripts": {
+    "start": "node src/index"
+  },
+  "dependencies": {
+    "@playgrounds/server": "0.1.0",
+    "chalk": "2.3.0",
+    "columnify": "1.5.4",
+    "console-clear": "1.1.0",
+    "dedent-js": "1.0.1",
+    "fs-extra": "5.0.0",
+    "inquirer": "5.0.1",
+    "minimist": "1.2.0",
+    "open-editor": "1.2.0",
+    "opn": "5.2.0",
+    "pretty-error": "2.1.1",
+    "redent": "2.0.0",
+    "semver": "5.5.0",
+    "shortid": "2.2.8",
+    "trash": "4.2.1",
+    "update-notifier": "2.3.0"
+  }
+}
