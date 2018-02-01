@@ -1,5 +1,6 @@
+<br />
 <div align="center" style="padding: 40px;">
-    <img alt="Playgrounds" src="https://raw.githubusercontent.com/k15a/playgrounds/master/assets/Logo.png" width="160px"/>
+    <img alt="Playgrounds" src="https://raw.githubusercontent.com/k15a/playgrounds/master/assets/Logo.png" width="160px" />
 </div>
 
 # Getting Started
@@ -15,7 +16,7 @@ playgrounds
 > You can use `npx playgrounds` to try out playgrounds without installing it globally.
 
 <div align="center" style="padding: 40px;">
-    <img alt="Getting started" src="https://raw.githubusercontent.com/k15a/playgrounds/master/assets/GettingStarted.gif" width="800px"/>
+    <img alt="Getting started" src="https://raw.githubusercontent.com/k15a/playgrounds/master/assets/GettingStarted.gif" width="800px" />
 </div>
 
 # Features

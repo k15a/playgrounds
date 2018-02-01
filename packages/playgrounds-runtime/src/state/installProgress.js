@@ -16,7 +16,7 @@ export default function installProgress(state = initialState, action) {
     case 'installProgress/STEP':
       return {
         ...state,
-        step: action.data.message,
+        step: action.step,
       }
 
     case 'installProgress/DONE':

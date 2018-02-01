@@ -4,6 +4,9 @@
   "version": "0.1.3",
   "license": "MIT",
   "repository": "k15a/playgrounds",
+  "engines": {
+    "node": ">=8.6.0"
+  },
   "bin": {
     "playgrounds": "./bin/playgrounds.js"
   },

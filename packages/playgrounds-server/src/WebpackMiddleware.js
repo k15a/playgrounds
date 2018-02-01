@@ -10,7 +10,7 @@ const debug = require('debug')('@playgrounds/server::WebpackMiddleware')
 
 // Files
 const Compiler = require('./Compiler')
-const YarnInstallPlugin = require('./YarnInstallPlugin')
+const PackageInstallPlugin = require('./PackageInstallPlugin')
 const WatchMissingNodeModulesPlugin = require('./WatchMissingNodeModulesPlugin')
 
 function WebpackMiddleware({ projectDir, sourceDir, installer }) {
@@ -50,7 +50,7 @@ function WebpackMiddleware({ projectDir, sourceDir, installer }) {
         ],
       },
       plugins: [
-        new YarnInstallPlugin(installer),
+        new PackageInstallPlugin(installer),
         new WatchMissingNodeModulesPlugin(
           path.join(projectDir, 'node_modules'),
         ),

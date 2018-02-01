@@ -11,10 +11,10 @@ const history = require('connect-history-api-fallback')
 
 // Files
 const WebpackMiddleware = require('./WebpackMiddleware')
-const YarnInstaller = require('./YarnInstaller')
+const PackageInstaller = require('./PackageInstaller')
 
 async function server({ projectDir, sourceDir }) {
-  const installer = new YarnInstaller(projectDir)
+  const installer = new PackageInstaller(projectDir)
   const app = express()
   const port = await getPort({
     port: 1337,

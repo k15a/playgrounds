@@ -9,7 +9,22 @@ const resolve = util.promisify(require('resolve'))
 // Files
 const Queue = require('./Queue')
 
-class YarnInstaller {
+const useYarn = (() => {
+  try {
+    execa.sync('yarnpkg', ['--version'], {
+      stdio: 'ignore',
+    })
+    return true
+  } catch (error) {
+    return false
+  }
+})()
+
+const peerRegex = useYarn
+  ? /has unmet peer dependency "(.+)@(.+)"/
+  : /requires a peer of (.+)@(.+) but none is installed/
+
+class PackageInstaller {
   constructor(projectDir) {
     this.projectDir = projectDir
     this.installing = new Map()
@@ -18,26 +33,16 @@ class YarnInstaller {
   }
 
   watch(listener) {
-    this.events.on('step', listener)
+    this.events.on('data', listener)
     return () => {
-      this.events.removeListener('step', listener)
+      this.events.removeListener('data', listener)
     }
   }
 
   extractPeerDependencies(output) {
     return output
       .split('\n')
-      .map(message => {
-        try {
-          return JSON.parse(message)
-        } catch (error) {
-          return {}
-        }
-      })
-      .filter(message => message.type === 'warning')
-      .map(message =>
-        /has unmet peer dependency "(.+)@(.+)"/.exec(message.data),
-      )
+      .map(line => peerRegex.exec(line))
       .filter(Boolean)
       .map(([, dependency, version]) => {
         if (version.includes(' ')) {
@@ -49,39 +54,45 @@ class YarnInstaller {
   }
 
   async worker(dependency) {
-    this.events.emit('step', {
+    this.events.emit('data', {
       type: 'start',
       dependency,
     })
 
-    const output = execa('yarn', ['add', '--json', dependency], {
+    const command = useYarn
+      ? ['yarnpkg', ['add', dependency]]
+      : ['npm', ['install', dependency]]
+
+    const output = execa(...command, {
       cwd: this.projectDir,
     })
 
-    const processMessage = data => {
-      const messages = data
-        .toString()
-        .split('\n')
-        .filter(Boolean)
-      for (const message of messages) {
-        try {
-          const parsed = JSON.parse(message)
-          this.events.emit('step', {
-            ...parsed,
-            dependency,
-          })
-        } catch (error) {
-          // noop
+    if (useYarn) {
+      const processMessage = data => {
+        const messages = data
+          .toString()
+          .split('\n')
+          .filter(Boolean)
+
+        for (const message of messages) {
+          // Yarn steps
+          const match = /\[\d\/\d] (.+)/.exec(message)
+          if (match) {
+            this.events.emit('data', {
+              type: 'step',
+              step: match[1],
+            })
+          }
         }
       }
-    }
 
-    output.stdout.on('data', processMessage)
-    output.stderr.on('data', processMessage)
+      output.stdout.on('data', processMessage)
+      output.stderr.on('data', processMessage)
+    }
 
     const { stderr } = await output
 
-    this.events.emit('step', {
+    this.events.emit('data', {
       type: 'done',
       dependency,
     })
@@ -125,4 +136,4 @@ class YarnInstaller {
   }
 }
 
-module.exports = YarnInstaller
+module.exports = PackageInstaller

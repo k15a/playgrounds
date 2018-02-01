@@ -1,4 +1,4 @@
-class YarnInstallPlugin {
+class PackageInstallPlugin {
   constructor(installer) {
     this.compiler = null
     this.resolving = new Set()
@@ -61,4 +61,4 @@ class YarnInstallPlugin {
   }
 }
 
-module.exports = YarnInstallPlugin
+module.exports = PackageInstallPlugin
