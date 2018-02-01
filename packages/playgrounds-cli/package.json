@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": "k15a/playgrounds",
   "bin": {
-    "playgrounds": "./bin/playgrounds"
+    "playgrounds": "./bin/playgrounds.js"
   },
   "scripts": {
     "start": "node src/index",
