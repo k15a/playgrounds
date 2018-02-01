@@ -40,6 +40,6 @@ We support babel-macros out of the box. Feel free to use them.
 
 We currently have templates for React, Preact and styled-components. We try to keep the templates as simple as possible because nobody wants to delete code they don't need.
 
-You can override the existing templates or create a new template in your `~/.playgrounds/templates` directory. Create a new directory with the template name and put everything there you want. Then you can use the template with `playgorunds --template <template-name>`.
+You can override the existing templates or create a new template in your `~/.playgrounds/templates` directory. Create a new directory with the template name and put everything there you want. Then you can use the template with `playgrounds --template <template-name>`.
 
 🦄
