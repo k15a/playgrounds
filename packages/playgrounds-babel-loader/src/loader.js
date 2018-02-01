@@ -60,7 +60,7 @@ function loader(code) {
   ])
 
   const plugins = removeEmpty([
-    require.resolve('babel-plugin-macro'),
+    require.resolve('babel-plugin-macros'),
 
     addCond(
       isStyledComponents,
