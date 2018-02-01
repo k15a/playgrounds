@@ -1,8 +1,10 @@
 {
   "name": "@playgrounds/server",
+  "description": "Development server for playgrounds",
   "version": "0.1.1",
   "main": "src/server.js",
   "license": "MIT",
+  "repository": "k15a/playgrounds",
   "dependencies": {
     "@playgrounds/babel-loader": "^0.1.0",
     "@playgrounds/runtime": "^0.1.1",

@@ -1,8 +1,11 @@
 {
   "name": "@playgrounds/babel-loader",
+  "description":
+    "Babel loader which automatically selects plugins based on imports",
   "version": "0.1.0",
   "main": "src/loader.js",
   "license": "MIT",
+  "repository": "k15a/playgrounds",
   "dependencies": {
     "@babel/core": "7.0.0-beta.38",
     "@babel/plugin-transform-react-jsx": "7.0.0-beta.38",
