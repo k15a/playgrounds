@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "main": "src/server.js",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@playgrounds/babel-loader": "0.1.0",
     "@playgrounds/runtime": "0.1.0",

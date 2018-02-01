@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "main": "src/loader.js",
   "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
   "dependencies": {
     "@babel/core": "7.0.0-beta.38",
     "@babel/plugin-transform-react-jsx": "7.0.0-beta.38",
