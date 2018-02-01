@@ -1,6 +1,6 @@
 {
   "name": "playgrounds",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "bin": {
     "playgrounds": "./bin/playgrounds"
@@ -10,7 +10,7 @@
     "prepublishOnly": "cp ../../Readme.md ./Readme.md"
   },
   "dependencies": {
-    "@playgrounds/server": "^0.1.0",
+    "@playgrounds/server": "^0.1.1",
     "chalk": "2.3.0",
     "columnify": "1.5.4",
     "console-clear": "1.1.0",

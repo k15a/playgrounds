@@ -1,11 +1,11 @@
 {
   "name": "@playgrounds/server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "src/server.js",
   "license": "MIT",
   "dependencies": {
     "@playgrounds/babel-loader": "^0.1.0",
-    "@playgrounds/runtime": "^0.1.0",
+    "@playgrounds/runtime": "^0.1.1",
     "chalk": "2.3.0",
     "connect-history-api-fallback": "1.5.0",
     "css-loader": "0.28.9",
