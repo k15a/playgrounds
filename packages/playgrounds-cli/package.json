@@ -6,7 +6,8 @@
     "playgrounds": "./bin/playgrounds"
   },
   "scripts": {
-    "start": "node src/index"
+    "start": "node src/index",
+    "prepublishOnly": "cp ../../Readme.md ./Readme.md"
   },
   "dependencies": {
     "@playgrounds/server": "^0.1.0",

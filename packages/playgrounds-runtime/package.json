@@ -4,8 +4,9 @@
   "main": "build/runtime.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --env.production",
-    "watch": "webpack -w"
+    "build": "webpack --env.production",
+    "watch": "webpack --watch",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0-beta.38",
