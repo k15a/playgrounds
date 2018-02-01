@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "main": "build/runtime.js",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "webpack --env.production",
     "watch": "webpack -w"
