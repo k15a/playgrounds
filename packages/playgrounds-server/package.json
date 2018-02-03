@@ -7,6 +7,7 @@
   "repository": "k15a/playgrounds",
   "dependencies": {
     "@playgrounds/babel-loader": "^0.1.2",
+    "@playgrounds/path-loader": "^0.2.0",
     "@playgrounds/runtime": "^0.2.0",
     "chalk": "2.3.0",
     "connect-history-api-fallback": "1.5.0",
