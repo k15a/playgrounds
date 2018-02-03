@@ -48,6 +48,7 @@ function loader(code) {
 
   const isReact = dependencies.has('react')
   const isPreact = dependencies.has('preact')
+  const isInferno = dependencies.has('inferno')
   const isStyledComponents = dependencies.has('styled-components')
 
   const presets = removeEmpty([
@@ -73,6 +74,8 @@ function loader(code) {
         pragma: 'h',
       },
     ]),
+
+    addCond(isInferno, require.resolve('babel-plugin-inferno')),
   ])
 
   const output = babel.transformFromAstSync(ast, code, {

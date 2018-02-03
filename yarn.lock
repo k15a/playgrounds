@@ -1065,6 +1065,13 @@ babel-loader@8.0.0-beta.0:
     loader-utils "^1.0.2"
     mkdirp "^0.5.1"
 
+babel-plugin-inferno@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-inferno/-/babel-plugin-inferno-3.4.0.tgz#1e004f33d98ec8482df0d252ecedc9fb355cf699"
+  dependencies:
+    babel-plugin-syntax-jsx "^6.18.0"
+    inferno-vnode-flags "3.10.1"
+
 babel-plugin-macros@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-macros/-/babel-plugin-macros-2.1.0.tgz#e978fd4c5ee9cca73a809c176524c2e9f4dcccbf"
@@ -1078,6 +1085,10 @@ babel-plugin-styled-components@1.5.0:
     "@babel/helper-annotate-as-pure" "^7.0.0-beta.37"
     babel-types "^6.26.0"
     stylis "^3.0.0"
+
+babel-plugin-syntax-jsx@^6.18.0:
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
 
 babel-runtime@^6.26.0:
   version "6.26.0"
@@ -3263,6 +3274,10 @@ indexes-of@^1.0.1:
 indexof@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/indexof/-/indexof-0.0.1.tgz#82dc336d232b9062179d05ab3293a66059fd435d"
+
+inferno-vnode-flags@3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/inferno-vnode-flags/-/inferno-vnode-flags-3.10.1.tgz#88a4528a3b4df0f33a3ace68dc45f05b651c0e41"
 
 inflight@^1.0.4:
   version "1.0.6"

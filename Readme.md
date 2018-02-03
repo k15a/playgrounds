@@ -23,7 +23,7 @@ playgrounds
 
 ## JSX
 
-We support JSX for both React and Preact. We decide which JSX pragma we use based on the imports of the file. If you import from `react` we will transform JSX to `React.createElement`. If you import from `preact` we tranform JSX to `h`. Otherwise we will disable all JSX transforms.
+We support JSX for React, Preact and Inferno. We decide which transform we use based on the imports of the file. If you import from `react` we will transform JSX to `React.createElement`. If you import from `preact` we transform JSX to `h`. If you import from `inferno` we transform JSX to `Inferno.createVNode`. Otherwise we will disable all JSX transforms.
 
 ## Automatic Node Package Installation
 
