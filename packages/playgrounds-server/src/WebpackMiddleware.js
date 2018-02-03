@@ -36,16 +36,21 @@ function WebpackMiddleware({ projectDir, sourceDir, installer }) {
       module: {
         rules: [
           {
-            test: /\.css$/,
-            use: [
-              require.resolve('style-loader'),
-              require.resolve('css-loader'),
+            oneOf: [
+              {
+                test: /\.css$/,
+                use: [
+                  require.resolve('style-loader'),
+                  require.resolve('css-loader'),
+                ],
+              },
+
+              {
+                test: /\.(js|ts|tsx)/,
+                include: sourceDir,
+                use: require.resolve('@playgrounds/babel-loader'),
+              },
             ],
-          },
-          {
-            test: /\.(js|ts|tsx)/,
-            include: sourceDir,
-            use: require.resolve('@playgrounds/babel-loader'),
           },
         ],
       },
