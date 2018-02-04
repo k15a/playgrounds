@@ -1,7 +1,7 @@
 {
   "name": "@playgrounds/path-loader",
   "description": "Webpack loader which exports the imported path",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "src/loader.js",
   "license": "MIT",
   "repository": "k15a/playgrounds",
