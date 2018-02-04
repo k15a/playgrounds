@@ -3,6 +3,10 @@
     <img alt="Playgrounds" src="https://raw.githubusercontent.com/k15a/playgrounds/master/assets/Logo.png" width="160px" />
 </div>
 
+# What is Playgrounds?
+
+Playgrounds is an alternative to Codesandbox or webpackbin with the difference that it's running locally on your computer. This gives you the advantage that you can use your own editor which is already configured like you want. Playgrounds is build to quickly prototype new ideas or try out libraries but not for production ready applications.
+
 # Getting Started
 
 ```sh
