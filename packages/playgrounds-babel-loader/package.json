@@ -2,7 +2,7 @@
   "name": "@playgrounds/babel-loader",
   "description":
     "Babel loader which automatically selects plugins based on imports",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "main": "src/loader.js",
   "license": "MIT",
   "repository": "k15a/playgrounds",
