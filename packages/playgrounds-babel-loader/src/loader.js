@@ -6,9 +6,9 @@ const removeEmpty = array => array.filter(value => value !== null)
 const addCond = (cond, value) => (cond ? value : null)
 
 function loader(code) {
-  const path = this.request
+  const path = this.resourcePath
   const isTypescript = /\.ts$/.test(path) // add tsx
-  const isFlow = /^(?:\/\/\s*flow|\/\*\s*flow\s*\*\/)/.test(code)
+  const isFlow = /^(?:\/\/\s*@flow|\/\*\s*@flow\s*\*\/)/.test(code)
 
   const ast = babylon.parse(code, {
     sourceType: 'module',
@@ -53,7 +53,12 @@ function loader(code) {
   const isStyledComponents = dependencies.has('styled-components')
 
   const presets = removeEmpty([
-    require.resolve('@babel/preset-env'),
+    [
+      require.resolve('@babel/preset-env'),
+      {
+        modules: false,
+      },
+    ],
     require.resolve('@babel/preset-stage-0'),
 
     addCond(isFlow, require.resolve('@babel/preset-flow')),
