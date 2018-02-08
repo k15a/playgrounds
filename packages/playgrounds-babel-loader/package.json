@@ -7,6 +7,7 @@
   "license": "MIT",
   "repository": "k15a/playgrounds",
   "dependencies": {
+    "@babel/code-frame": "7.0.0-beta.39",
     "@babel/core": "7.0.0-beta.39",
     "@babel/plugin-transform-react-jsx": "7.0.0-beta.39",
     "@babel/preset-env": "7.0.0-beta.39",
@@ -17,6 +18,7 @@
     "babel-plugin-inferno": "3.4.0",
     "babel-plugin-macros": "2.1.0",
     "babel-plugin-styled-components": "1.5.0",
-    "babylon": "6.18.0"
+    "babylon": "6.18.0",
+    "loader-utils": "1.1.0"
   }
 }
