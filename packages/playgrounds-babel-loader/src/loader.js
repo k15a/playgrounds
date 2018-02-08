@@ -12,6 +12,7 @@ function loader(code) {
 
   const ast = babylon.parse(code, {
     sourceType: 'module',
+    sourceFilename: path,
     plugins: removeEmpty([
       addCond(isTypescript, 'typescript'),
       addCond(isFlow, 'flow'),
