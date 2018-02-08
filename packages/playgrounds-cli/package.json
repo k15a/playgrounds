@@ -3,7 +3,8 @@
   "description": "Code playgrounds for your computer Edit",
   "version": "0.3.1",
   "license": "MIT",
-  "repository": "k15a/playgrounds",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-cli",
   "engines": {
     "node": ">=8.6.0"
   },

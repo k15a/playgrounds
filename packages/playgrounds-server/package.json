@@ -4,7 +4,8 @@
   "version": "0.3.1",
   "main": "src/server.js",
   "license": "MIT",
-  "repository": "k15a/playgrounds",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-server",
   "scripts": {
     "start": "nodemon -i development -w .. devServer"
   },

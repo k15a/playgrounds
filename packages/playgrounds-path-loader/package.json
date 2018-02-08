@@ -4,7 +4,8 @@
   "version": "0.3.0",
   "main": "src/loader.js",
   "license": "MIT",
-  "repository": "k15a/playgrounds",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-path-loader",
   "dependencies": {
     "loader-utils": "1.1.0"
   }

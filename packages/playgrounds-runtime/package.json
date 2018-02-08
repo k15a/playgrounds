@@ -4,7 +4,8 @@
   "version": "0.3.1",
   "main": "build/runtime.js",
   "license": "MIT",
-  "repository": "k15a/playgrounds",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-runtime",
   "scripts": {
     "build": "webpack --env.production",
     "watch": "webpack --watch",
