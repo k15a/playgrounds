@@ -1,12 +1,10 @@
 {
   "name": "@playgrounds/babel-loader",
-  "description":
-    "Babel loader which automatically selects plugins based on imports",
-  "version": "0.3.1",
+  "description": "Babel loader which automatically selects plugins based on imports",
+  "version": "0.4.0",
   "main": "src/loader.js",
   "license": "MIT",
-  "repository":
-    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-babel-loader",
+  "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-babel-loader",
   "dependencies": {
     "@babel/code-frame": "7.0.0-beta.39",
     "@babel/core": "7.0.0-beta.39",
