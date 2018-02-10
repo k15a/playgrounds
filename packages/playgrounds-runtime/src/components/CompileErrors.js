@@ -51,7 +51,7 @@ const CompileError = ({ compileError }) => {
             type="button"
             onClick={openEditor}
             style={{
-              background: 'gray',
+              background: 'none',
               border: 'none',
               padding: 0,
               margin: 0,
