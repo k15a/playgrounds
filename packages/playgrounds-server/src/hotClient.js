@@ -10,16 +10,16 @@ eventSource.onmessage = function handleMessage(event) {
 function processMessage(message) {
   if (message.errors.length > 0) {
     if (window.runtime) {
-      window.runtime.compileError(message.errors)
+      window.runtime.reportCompileErrors(message.errors)
     } else {
-      console.error(message)
+      for (const error of message.errors) {
+        console.error(error)
+      }
     }
   } else {
     if (message.warnings.length > 0) {
-      if (window.runtime) {
-        window.runtime.compileError(message.errors)
-      } else {
-        console.warn(message)
+      for (const warning of message.warnings) {
+        console.warn(warning)
       }
     }
 

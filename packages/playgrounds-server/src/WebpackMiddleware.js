@@ -20,18 +20,23 @@ function WebpackMiddleware({ projectDir, sourceDir, installer }) {
   debug('Creating file system')
   const memoryFS = new MemoryFS()
 
-  function getCompiler(req, filePath) {
-    if (compilers.has(req.path)) {
-      debug(`Compiler for "${req.path}" already exists`)
-      return compilers.get(req.path)
+  function getCompiler(request, filePath) {
+    if (compilers.has(request.path)) {
+      debug(`Compiler for "${request.path}" already exists`)
+      return compilers.get(request.path)
     }
 
-    debug(`Creating compiler for "${req.path}"`)
+    debug(`Creating compiler for "${request.path}"`)
     const compiler = new Compiler(memoryFS, {
+      context: sourceDir,
       entry: [path.join(__dirname, 'hotClient.js'), filePath],
       output: {
-        path: path.dirname(req.path),
-        filename: path.basename(req.path),
+        path: path.dirname(request.path),
+        filename: path.basename(request.path),
+        devtoolModuleFilenameTemplate: info =>
+          path
+            .relative(sourceDir, info.absoluteResourcePath)
+            .replace(/\\/g, '/'),
       },
       module: {
         rules: [
@@ -73,38 +78,38 @@ function WebpackMiddleware({ projectDir, sourceDir, installer }) {
 
         new webpack.HotModuleReplacementPlugin(),
         new webpack.DefinePlugin({
-          'process.env.HOT_PATH': JSON.stringify(`${req.path}?hot=true`),
+          'process.env.HOT_PATH': JSON.stringify(`${request.path}?hot=true`),
         }),
       ],
     })
 
     compiler.onClose(() => {
-      debug(`Removing compiler for "${req.path}"`)
-      compilers.delete(req.path)
+      debug(`Removing compiler for "${request.path}"`)
+      compilers.delete(request.path)
     })
 
-    compilers.set(req.path, compiler)
+    compilers.set(request.path, compiler)
     return compiler
   }
 
-  return async function handler(req, res, next) {
-    const filePath = path.join(sourceDir, req.path)
+  return async function handler(request, response, next) {
+    const filePath = path.join(sourceDir, request.path)
 
-    debug(`Handling "${req.path}"`)
-    if (req.method !== 'GET') {
-      debug(`"${req.path}" is not a GET request`)
+    debug(`Handling "${request.path}"`)
+    if (request.method !== 'GET') {
+      debug(`"${request.path}" is not a GET request`)
       return next()
     }
 
-    if (/\.hot-update/.test(req.path)) {
+    if (/\.hot-update/.test(request.path)) {
       try {
-        return sendFile(memoryFS, req, res)
+        return sendFile(memoryFS, request, response)
       } catch (error) {
         // continue
       }
     }
 
-    if (/\.(js|css)$/.test(req.path)) {
+    if (/\.(js|css)$/.test(request.path)) {
       if (!await fileExists(filePath)) {
         debug(`"${filePath}" does not exist`)
         return next()
@@ -112,42 +117,48 @@ function WebpackMiddleware({ projectDir, sourceDir, installer }) {
 
       debug(`"${filePath}" exists`)
 
-      const compiler = getCompiler(req, filePath)
+      const compiler = getCompiler(request, filePath)
 
-      if (req.query.hot) {
-        return handleHotRequest(compiler, memoryFS, req, res)
+      if (request.query.hot) {
+        return handleHotRequest({
+          sourceDir,
+          compiler,
+          request,
+          response,
+        })
       }
 
       return compiler.getStats(() => {
         try {
-          return sendFile(memoryFS, req, res)
+          return sendFile(memoryFS, request, response)
         } catch (error) {
-          debug(`Webpack result "${req.path}" is not a file`)
+          debug(`Webpack result "${request.path}" is not a file`)
           return next()
         }
       })
     }
 
-    debug(`Cannot handle "${req.path}"`)
+    debug(`Cannot handle "${request.path}"`)
     return next()
   }
 }
 
-function handleHotRequest(compiler, memoryFS, req, res) {
-  debug(`Sending hot updates to "${req.path}"`)
+function handleHotRequest({ sourceDir, compiler, request, response }) {
+  debug(`Sending hot updates to "${request.path}"`)
 
-  res.set('Content-Type', 'text/event-stream')
-  res.set('Cache-Control', 'no-cache')
-  res.set('Connection', 'keep-alive')
+  response.set('Content-Type', 'text/event-stream')
+  response.set('Cache-Control', 'no-cache')
+  response.set('Connection', 'keep-alive')
 
-  res.write('\n')
+  response.write('\n')
 
   const unsubscribe = compiler.watchStats(webpackStats => {
     const stats = webpackStats.toJson({
+      context: sourceDir,
       errorDetails: false,
     })
 
-    debug(`Sending updates "${stats.hash}" to ${req.path}`)
+    debug(`Sending updates "${stats.hash}" to ${request.path}`)
 
     const payload = JSON.stringify({
       type: 'HOT_UPDATE',
@@ -158,29 +169,29 @@ function handleHotRequest(compiler, memoryFS, req, res) {
       modules: createModuleMap(stats.modules),
     })
 
-    res.write(`data: ${payload}\n\n`)
+    response.write(`data: ${payload}\n\n`)
   })
 
   const heartbeat = setInterval(() => {
-    debug(`Sending heartbeat to "${req.path}"`)
-    res.write('data: ❤️\n\n')
+    debug(`Sending heartbeat to "${request.path}"`)
+    response.write('data: ❤️\n\n')
   }, 10000)
 
-  req.on('close', () => {
-    debug(`Stopping hot updates to "${req.path}"`)
+  request.on('close', () => {
+    debug(`Stopping hot updates to "${request.path}"`)
     unsubscribe()
     clearInterval(heartbeat)
   })
 }
 
-function sendFile(memoryFS, req, res) {
-  if (memoryFS.statSync(req.path).isFile()) {
-    const file = memoryFS.readFileSync(req.path, 'utf-8')
+function sendFile(memoryFS, request, response) {
+  if (memoryFS.statSync(request.path).isFile()) {
+    const file = memoryFS.readFileSync(request.path, 'utf-8')
 
-    res.set('Content-Type', mime.getType(req.path))
-    res.set('Content-Length', file.length)
+    response.set('Content-Type', mime.getType(request.path))
+    response.set('Content-Length', file.length)
 
-    return res.send(file)
+    return response.send(file)
   }
 
   throw new Error('Not a file.')

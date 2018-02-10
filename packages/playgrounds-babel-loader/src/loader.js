@@ -73,7 +73,7 @@ function parse({ filename, code, isFlow, isTypescript }) {
       }
 
       const codeFrame = cf.codeFrameColumns(code, location, {
-        forceColor: false,
+        forceColor: true,
       })
 
       const name = isSyntaxError ? 'SyntaxError: ' : ''

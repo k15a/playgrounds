@@ -2,6 +2,7 @@
 const path = require('path')
 
 // Packages
+const openEditor = require('open-editor')
 const express = require('express')
 const parse5 = require('parse5')
 const fs = require('fs-extra')
@@ -22,27 +23,38 @@ async function server({ projectDir, sourceDir }) {
 
   app.use(WebpackMiddleware({ projectDir, sourceDir, installer }))
 
-  app.get('/__playgrounds__/runtime.js', (req, res) => {
-    return res.sendFile(require.resolve('@playgrounds/runtime'))
+  app.get('/__playgrounds__/runtime.js', (request, response) => {
+    return response.sendFile(require.resolve('@playgrounds/runtime'))
   })
 
-  app.get('/__playgrounds__/install-progress', (req, res) => {
-    res.set('Content-Type', 'text/event-stream')
-    res.set('Cache-Control', 'no-cache')
-    res.set('Connection', 'keep-alive')
+  app.get('/__playgrounds__/open-editor', (request, response) => {
+    openEditor([
+      {
+        file: path.join(sourceDir, request.query.filename),
+        line: request.query.lineNumber,
+        column: request.query.columnNumber,
+      },
+    ])
+    return response.send('👍')
+  })
 
-    res.write('\n')
+  app.get('/__playgrounds__/install-progress', (request, response) => {
+    response.set('Content-Type', 'text/event-stream')
+    response.set('Cache-Control', 'no-cache')
+    response.set('Connection', 'keep-alive')
+
+    response.write('\n')
 
     const unsubscribe = installer.watch(message => {
       const payload = JSON.stringify(message)
-      res.write(`data: ${payload}\n\n`)
+      response.write(`data: ${payload}\n\n`)
     })
 
     const heartbeat = setInterval(() => {
-      res.write('data: ❤️\n\n')
+      response.write('data: ❤️\n\n')
     }, 10000)
 
-    req.on('close', () => {
+    request.on('close', () => {
       unsubscribe()
       clearInterval(heartbeat)
     })
@@ -50,17 +62,17 @@ async function server({ projectDir, sourceDir }) {
 
   app.use(history())
 
-  app.get('*.html', async (req, res, next) => {
-    const filePath = path.join(sourceDir, req.path)
+  app.get('*.html', async (request, response, next) => {
+    const filePath = path.join(sourceDir, request.path)
 
     if (await fileExists(filePath)) {
       const file = await fs.readFile(filePath, 'utf-8')
       const doc = processDoc(parse5.parse(file))
       const html = parse5.serialize(doc)
 
-      res.set('Content-Type', mime.getType(req.path))
-      res.set('Content-Length', html.length)
-      return res.send(html)
+      response.set('Content-Type', mime.getType(request.path))
+      response.set('Content-Length', html.length)
+      return response.send(html)
     }
 
     return next()

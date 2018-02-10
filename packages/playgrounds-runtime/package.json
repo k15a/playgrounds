@@ -4,7 +4,8 @@
   "version": "0.4.0",
   "main": "build/runtime.js",
   "license": "MIT",
-  "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-runtime",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-runtime",
   "scripts": {
     "build": "webpack --env.production",
     "watch": "webpack --watch",
@@ -17,11 +18,13 @@
     "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.39",
     "@babel/plugin-transform-react-jsx": "7.0.0-beta.39",
     "@babel/preset-env": "7.0.0-beta.39",
+    "anser": "1.4.6",
     "babel-loader": "8.0.0-beta.0",
     "change-case": "3.0.1",
+    "open-color": "1.6.2",
     "preact": "8.2.7",
     "preact-redux": "2.0.3",
     "redux": "3.7.2",
-    "webpack": "3.10.0"
+    "webpack": "3.11.0"
   }
 }

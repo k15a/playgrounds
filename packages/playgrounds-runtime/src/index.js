@@ -1,7 +1,9 @@
+// Packages
 import { h, render } from 'preact'
 import { Provider } from 'preact-redux'
 import { constantCase } from 'change-case'
 
+// Files
 import App from './App'
 import store from './store'
 
@@ -25,10 +27,17 @@ installProgressEventSource.onmessage = function handleMessage(event) {
   }
 }
 
-// const runtime = {
-//   compileError(error) {
-//     console.log('runtime', error)
-//   },
-// }
-//
-// window.runtime = runtime
+const runtime = {
+  get hasError() {
+    const state = store.getState()
+    return state.compileErrors.length !== 0 || state.runtimeErrors.length !== 0
+  },
+  reportCompileErrors(errors) {
+    store.dispatch({
+      type: 'compileErrors/REPORT_COMPILE_ERRORS',
+      errors,
+    })
+  },
+}
+
+window.runtime = runtime
