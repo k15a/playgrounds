@@ -1,7 +1,7 @@
 {
   "name": "@playgrounds/server",
   "description": "Development server for playgrounds",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "main": "src/server.js",
   "license": "MIT",
   "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-server",

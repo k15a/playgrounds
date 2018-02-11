@@ -1,7 +1,7 @@
 {
   "name": "playgrounds",
   "description": "Code playgrounds for your computer Edit",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "license": "MIT",
   "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-cli",
   "engines": {
@@ -15,7 +15,7 @@
     "prepublishOnly": "cp ../../Readme.md ./Readme.md"
   },
   "dependencies": {
-    "@playgrounds/server": "^0.5.1",
+    "@playgrounds/server": "^0.5.2",
     "chalk": "2.3.0",
     "columnify": "1.5.4",
     "console-clear": "1.1.0",
