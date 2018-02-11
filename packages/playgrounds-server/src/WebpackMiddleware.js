@@ -51,7 +51,7 @@ function WebpackMiddleware({ projectDir, sourceDir, installer }) {
               },
 
               {
-                test: /\.(js|ts|tsx)/,
+                test: /\.(js|ts|tsx)$/,
                 include: sourceDir,
                 loader: require.resolve('@playgrounds/babel-loader'),
                 options: {
