@@ -1,7 +1,7 @@
 {
   "name": "@playgrounds/runtime",
   "description": "Runtime overlay for playgrounds",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "main": "build/runtime.js",
   "license": "MIT",
   "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-runtime",
