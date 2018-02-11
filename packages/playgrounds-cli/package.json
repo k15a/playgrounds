@@ -3,7 +3,8 @@
   "description": "Code playgrounds for your computer Edit",
   "version": "0.5.0",
   "license": "MIT",
-  "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-cli",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-cli",
   "engines": {
     "node": ">=8.6.0"
   },
@@ -22,8 +23,8 @@
     "dedent-js": "1.0.1",
     "fs-extra": "5.0.0",
     "inquirer": "5.1.0",
+    "launch-editor": "2.2.1",
     "minimist": "1.2.0",
-    "open-editor": "1.2.0",
     "opn": "5.2.0",
     "pretty-error": "2.1.1",
     "redent": "2.0.0",

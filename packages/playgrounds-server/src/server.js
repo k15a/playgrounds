@@ -2,7 +2,7 @@
 const path = require('path')
 
 // Packages
-const openEditor = require('open-editor')
+const launchEditor = require('launch-editor')
 const express = require('express')
 const parse5 = require('parse5')
 const fs = require('fs-extra')
@@ -28,13 +28,15 @@ async function server({ projectDir, sourceDir }) {
   })
 
   app.get('/__playgrounds__/open-editor', (request, response) => {
-    openEditor([
-      {
-        file: path.join(sourceDir, request.query.filename),
-        line: request.query.lineNumber,
-        column: request.query.columnNumber,
-      },
-    ])
+    const file = [
+      path.join(sourceDir, request.query.filename),
+      request.query.lineNumber,
+      request.query.columnNumber,
+    ]
+      .filter(Boolean)
+      .join(':')
+
+    launchEditor(file)
     return response.send('👍')
   })
 

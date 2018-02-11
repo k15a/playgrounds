@@ -6,8 +6,8 @@ const os = require('os')
 const chalk = require('chalk')
 const inquirer = require('inquirer')
 const opn = require('opn')
-const openEditor = require('open-editor')
 const server = require('@playgrounds/server')
+const launchEditor = require('launch-editor')
 const clearConsole = require('console-clear')
 
 // Files
@@ -166,7 +166,7 @@ async function open(args) {
   `)
 
   opn(`http://localhost:${port}`)
-  openEditor([sourceDir])
+  launchEditor(sourceDir)
 }
 
 module.exports = {

@@ -4,7 +4,8 @@
   "version": "0.5.0",
   "main": "src/server.js",
   "license": "MIT",
-  "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-server",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-server",
   "scripts": {
     "start": "nodemon -i development -w .. devServer"
   },
@@ -20,9 +21,9 @@
     "express": "4.16.2",
     "fs-extra": "5.0.0",
     "get-port": "3.2.0",
+    "launch-editor": "2.2.1",
     "memory-fs": "0.4.1",
     "mime": "2.2.0",
-    "open-editor": "1.2.0",
     "parse5": "4.0.0",
     "resolve": "1.5.0",
     "style-loader": "0.20.1",
