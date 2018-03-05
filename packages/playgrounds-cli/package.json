@@ -3,7 +3,8 @@
   "description": "Code playgrounds for your computer Edit",
   "version": "0.5.2",
   "license": "MIT",
-  "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-cli",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-cli",
   "engines": {
     "node": ">=8.6.0"
   },
@@ -16,7 +17,7 @@
   },
   "dependencies": {
     "@playgrounds/server": "^0.5.2",
-    "chalk": "2.3.0",
+    "chalk": "2.3.2",
     "columnify": "1.5.4",
     "console-clear": "1.1.0",
     "dedent-js": "1.0.1",
@@ -29,7 +30,7 @@
     "redent": "2.0.0",
     "semver": "5.5.0",
     "shortid": "2.2.8",
-    "trash": "4.2.1",
+    "trash": "4.3.0",
     "update-notifier": "2.3.0"
   }
 }

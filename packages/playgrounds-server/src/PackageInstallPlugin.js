@@ -8,12 +8,21 @@ class PackageInstallPlugin {
   apply(compiler) {
     this.compiler = compiler
 
-    compiler.plugin('after-resolvers', afterResolversCompiler => {
-      afterResolversCompiler.resolvers.normal.plugin(
-        'module',
-        this.resolveModule.bind(this),
-      )
-    })
+    compiler.hooks.afterResolvers.tap(
+      'PackageInstallPlugin',
+      afterResolversCompiler => {
+        afterResolversCompiler.resolverFactory.hooks.resolver.tap(
+          'normal',
+          'PackageInstallPlugin',
+          resolver => {
+            resolver.hooks.module.tapPromise(
+              'PackageInstallPlugin',
+              this.resolveModule.bind(this),
+            )
+          },
+        )
+      },
+    )
   }
 
   async install(request) {
@@ -26,24 +35,27 @@ class PackageInstallPlugin {
 
   async resolve(result) {
     return await new Promise((resolve, reject) => {
-      this.compiler.resolvers.normal.resolve(
-        result.context,
-        result.path,
-        result.request,
-        (error, filepath) => (error ? reject(error) : resolve(filepath)),
-      )
+      this.compiler.resolverFactory
+        .get('normal', this.compiler.options.resolver)
+        .resolve(
+          result.context,
+          result.path,
+          result.request,
+          {},
+          (error, filepath) => (error ? reject(error) : resolve(filepath)),
+        )
     })
   }
 
-  async resolveModule(result, next) {
+  async resolveModule(result) {
     // Only install direct dependencies
     if (/node_modules/.test(result.path)) {
-      return next()
+      return null
     }
 
     // Only handle a module once to avoid recursion when we use this.resolve
     if (this.resolving.has(result.request)) {
-      return next()
+      return null
     }
 
     this.resolving.add(result.request)
@@ -52,12 +64,12 @@ class PackageInstallPlugin {
       await this.resolve(result)
     } catch (error) {
       const matches = /Can't resolve '([@./-\w]+)' in/.exec(error)
-      await this.install(matches ? matches[1] : null)
+      if (matches) {
+        await this.install(matches[1])
+      }
     }
 
     this.resolving.delete(result.request)
-
-    return next()
   }
 }
 

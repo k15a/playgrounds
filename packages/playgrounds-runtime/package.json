@@ -4,26 +4,28 @@
   "version": "0.5.1",
   "main": "build/runtime.js",
   "license": "MIT",
-  "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-runtime",
+  "repository":
+    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-runtime",
   "scripts": {
     "build": "webpack --env.production",
     "watch": "webpack --watch",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.39",
-    "@babel/core": "7.0.0-beta.39",
-    "@babel/plugin-proposal-class-properties": "7.0.0-beta.39",
-    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.39",
-    "@babel/plugin-transform-react-jsx": "7.0.0-beta.39",
-    "@babel/preset-env": "7.0.0-beta.39",
+    "@babel/cli": "7.0.0-beta.40",
+    "@babel/core": "7.0.0-beta.40",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.40",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.40",
+    "@babel/plugin-transform-react-jsx": "7.0.0-beta.40",
+    "@babel/preset-env": "7.0.0-beta.40",
     "anser": "1.4.6",
     "babel-loader": "8.0.0-beta.0",
-    "change-case": "3.0.1",
+    "change-case": "3.0.2",
     "open-color": "1.6.2",
     "preact": "8.2.7",
     "preact-redux": "2.0.3",
     "redux": "3.7.2",
-    "webpack": "3.11.0"
+    "webpack": "4.1.0",
+    "webpack-cli": "2.0.10"
   }
 }

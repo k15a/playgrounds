@@ -2,13 +2,14 @@
 
 const path = require('path')
 
-const config = {
+const config = ({ production } = {}) => ({
+  mode: production ? 'production' : 'development',
   entry: './src/index.js',
   output: {
     path: path.resolve('build'),
     filename: 'runtime.js',
   },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
   module: {
     rules: [
       {
@@ -18,6 +19,6 @@ const config = {
       },
     ],
   },
-}
+})
 
 module.exports = config

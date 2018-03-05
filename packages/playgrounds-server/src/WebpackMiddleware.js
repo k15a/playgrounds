@@ -28,6 +28,7 @@ function WebpackMiddleware({ projectDir, sourceDir, installer }) {
 
     debug(`Creating compiler for "${request.path}"`)
     const compiler = new Compiler(memoryFS, {
+      mode: 'development',
       context: sourceDir,
       entry: [path.join(__dirname, 'hotClient.js'), filePath],
       output: {

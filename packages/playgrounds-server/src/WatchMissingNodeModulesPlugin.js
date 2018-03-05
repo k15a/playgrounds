@@ -4,16 +4,16 @@ class WatchMissingNodeModulesPlugin {
   }
 
   apply(compiler) {
-    compiler.plugin('emit', (compilation, callback) => {
-      const isNodeModule = compilation.missingDependencies.some(
-        file => file.indexOf(this.nodeModulesPath) !== -1,
+    compiler.hooks.emit.tap('WatchMissingNodeModulesPlugin', compilation => {
+      const missingDependencies = Array.from(compilation.missingDependencies)
+
+      const isNodeModule = missingDependencies.some(file =>
+        file.includes(this.nodeModulesPath),
       )
 
       if (isNodeModule) {
-        compilation.contextDependencies.push(this.nodeModulesPath)
+        compilation.contextDependencies.add(this.nodeModulesPath)
       }
-
-      return callback()
     })
   }
 }

@@ -29,9 +29,15 @@ class Compiler {
     this.compiler.outputFileSystem = fs
 
     debug('Registering "invalid" webpack event')
-    this.compiler.plugin('invalid', this.invalidateBundle.bind(this))
+    this.compiler.hooks.invalid.tap(
+      'Compiler',
+      this.invalidateBundle.bind(this),
+    )
     debug('Registering "watch-run" webpack event')
-    this.compiler.plugin('watch-run', this.invalidateBundle.bind(this))
+    this.compiler.hooks.watchRun.tap(
+      'Compiler',
+      this.invalidateBundle.bind(this),
+    )
 
     debug('Starting to watch for changes')
     this.watching = this.compiler.watch({}, this.handleWatch.bind(this))
@@ -69,15 +75,9 @@ class Compiler {
     this.events.emit('watch', stats)
   }
 
-  invalidateBundle(...args) {
+  invalidateBundle() {
     debug('Invalidate the bundle')
     this.webpackStats = null
-
-    // Handle Async
-    const next = args[args.length - 1]
-    if (typeof next === 'function') {
-      next()
-    }
   }
 
   getStats(callback) {
