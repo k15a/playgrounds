@@ -50,12 +50,12 @@ class PackageInstallPlugin {
   async resolveModule(result) {
     // Only install direct dependencies
     if (/node_modules/.test(result.path)) {
-      return null
+      return
     }
 
     // Only handle a module once to avoid recursion when we use this.resolve
     if (this.resolving.has(result.request)) {
-      return null
+      return
     }
 
     this.resolving.add(result.request)
