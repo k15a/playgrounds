@@ -15,10 +15,10 @@
     "@playgrounds/runtime": "^0.5.1",
     "chalk": "2.3.2",
     "connect-history-api-fallback": "1.5.0",
-    "css-loader": "0.28.10",
+    "css-loader": "0.28.11",
     "debug": "3.1.0",
-    "execa": "0.9.0",
-    "express": "4.16.2",
+    "execa": "0.10.0",
+    "express": "4.16.3",
     "fs-extra": "5.0.0",
     "get-port": "3.2.0",
     "launch-editor": "2.2.1",
@@ -26,10 +26,10 @@
     "mime": "2.2.0",
     "parse5": "4.0.0",
     "resolve": "1.5.0",
-    "style-loader": "0.20.2",
-    "webpack": "4.1.0"
+    "style-loader": "0.20.3",
+    "webpack": "4.1.1"
   },
   "devDependencies": {
-    "nodemon": "1.17.1"
+    "nodemon": "1.17.2"
   }
 }
