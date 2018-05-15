@@ -12,20 +12,20 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.42",
-    "@babel/core": "7.0.0-beta.42",
-    "@babel/plugin-proposal-class-properties": "7.0.0-beta.42",
-    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.42",
-    "@babel/plugin-transform-react-jsx": "7.0.0-beta.42",
-    "@babel/preset-env": "7.0.0-beta.42",
+    "@babel/cli": "7.0.0-beta.47",
+    "@babel/core": "7.0.0-beta.47",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.47",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.47",
+    "@babel/plugin-transform-react-jsx": "7.0.0-beta.47",
+    "@babel/preset-env": "7.0.0-beta.47",
     "anser": "1.4.6",
     "babel-loader": "8.0.0-beta.0",
     "change-case": "3.0.2",
     "open-color": "1.6.3",
-    "preact": "8.2.7",
+    "preact": "8.2.9",
     "preact-redux": "2.0.3",
-    "redux": "3.7.2",
-    "webpack": "4.1.1",
-    "webpack-cli": "2.0.12"
+    "redux": "4.0.0",
+    "webpack": "4.8.3",
+    "webpack-cli": "2.1.3"
   }
 }

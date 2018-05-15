@@ -13,23 +13,23 @@
     "@playgrounds/babel-loader": "^0.5.0",
     "@playgrounds/path-loader": "^0.4.0",
     "@playgrounds/runtime": "^0.5.1",
-    "chalk": "2.3.2",
+    "chalk": "2.4.1",
     "connect-history-api-fallback": "1.5.0",
     "css-loader": "0.28.11",
     "debug": "3.1.0",
     "execa": "0.10.0",
     "express": "4.16.3",
-    "fs-extra": "5.0.0",
+    "fs-extra": "6.0.1",
     "get-port": "3.2.0",
     "launch-editor": "2.2.1",
     "memory-fs": "0.4.1",
-    "mime": "2.2.0",
+    "mime": "2.3.1",
     "parse5": "4.0.0",
-    "resolve": "1.5.0",
-    "style-loader": "0.20.3",
-    "webpack": "4.1.1"
+    "resolve": "1.7.1",
+    "style-loader": "0.21.0",
+    "webpack": "4.8.3"
   },
   "devDependencies": {
-    "nodemon": "1.17.2"
+    "nodemon": "1.17.4"
   }
 }
