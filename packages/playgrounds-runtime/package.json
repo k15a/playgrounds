@@ -1,11 +1,10 @@
 {
   "name": "@playgrounds/runtime",
   "description": "Runtime overlay for playgrounds",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "main": "build/runtime.js",
   "license": "MIT",
-  "repository":
-    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-runtime",
+  "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-runtime",
   "scripts": {
     "build": "webpack --env.production",
     "watch": "webpack --watch",
