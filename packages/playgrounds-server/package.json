@@ -1,7 +1,7 @@
 {
   "name": "@playgrounds/server",
   "description": "Development server for playgrounds",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "main": "src/server.js",
   "license": "MIT",
   "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-server",
@@ -9,9 +9,9 @@
     "start": "nodemon -i development -w .. devServer"
   },
   "dependencies": {
-    "@playgrounds/babel-loader": "^0.6.0",
+    "@playgrounds/babel-loader": "^0.7.0",
     "@playgrounds/path-loader": "^0.4.0",
-    "@playgrounds/runtime": "^0.6.0",
+    "@playgrounds/runtime": "^0.7.0",
     "chalk": "2.4.1",
     "connect-history-api-fallback": "1.5.0",
     "css-loader": "0.28.11",
