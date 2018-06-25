@@ -1,10 +1,9 @@
 {
   "name": "playgrounds",
   "description": "Code playgrounds for your computer",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "license": "MIT",
-  "repository":
-    "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-cli",
+  "repository": "https://github.com/k15a/playgrounds/tree/master/packages/playgrounds-cli",
   "engines": {
     "node": ">=8.6.0"
   },
