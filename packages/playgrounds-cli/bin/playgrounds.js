@@ -1,9 +1,10 @@
-#!/usr/bin/env node --use_strict
+#!/usr/bin/env node
 
 // eslint-disable-next-line
 var semver = require('semver')
 
 if (semver.gte(process.version, '8.6.0')) {
+  require('use-strict')
   require('../src/index')
 } else {
   console.log('Hey,')
